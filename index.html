@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>뷰 기초 익히기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>뷰js 2 (vuejs 2) 기초 익히기 기본 강좌</h1>
+        {{ nextYear('저런') }} <br>
+        <input :type="inputType" :value="inputData"> <br>
+        <a :href="getVelogLink('imim')" target="_blank">임보라 벨로그 바로가기</a> <br>
+        <button v-on:click="plus">+</button>
+        {{ year }}
+        <button v-on:click="minus">-</button>
+        <form v-on:submit.prevent="submit">
+            <input type="text" :value="text" @keyup="updateText"> <br>
+            {{ text }} <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                person: {
+                    name: '임임',
+                    age: 32
+                },
+                inputData: 'hello',
+                inputType: 'text',
+                link: 'https://velog.io/@',
+                year: 2020,
+                text: 'text'
+            },
+            methods: {
+                nextYear(emotion) {
+                    let josa = this.hasFinalConsonant(this.person.name) ? '은' : '는';
+                    return emotion + '! ' + this.person.name + josa + ' 내년에 ' + (this.person.age + 1) + '살'
+                },
+                hasFinalConsonant(string) {
+                    string = string.charCodeAt(string.length - 1);
+                    return (string - 0xac00) % 28 > 0;
+                },
+                getVelogLink(userid) {
+                    return this.link + userid;
+                },
+                plus() {
+                    this.year++;
+                },
+                minus() {
+                    this.year--;
+                },
+                submit() {
+                    console.log('submitted')
+                },
+                updateText(event) {
+                    this.text = event.target.value;
+                }
+            }
+        })
+    </script>
+    <style type="text/css" scoped>
+    form {margin-top:1em;}
+    </style>
+</body>
+</html>
