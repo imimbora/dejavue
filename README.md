@@ -35,14 +35,35 @@ onclick 속성 => `v-on:click`
 
 `<form v-on:submit.prevent="submit">`
 
-<b>데이터 양방향 바인딩</b> <br>
+<b>데이터 양방향 바인딩</b> (v-model) <br>
 input 입력시 미리보기
 
 `v-on:keyup` 이벤트 <br>
 `v-on:` 은 @ 로 대체 <br>
 함수에 따로 인자를 넣어주지 않았지만 <br>
 keyup 이벤트에서 자동으로 키보드 이벤트가 발생할 때마다 object 를 인자로 받아옴
+(01.html)
 
 \+ 비고 <br>
 임임 뒤에 '은/는' 중에 붙이도록 응용<br>
 ( 한글에 조사를 붙여주는 josa.js 참조 )
+
+
+2020.06.21
+
+`:value="text" @keyup="updateText"` 대신 `v-model="text"` 로 바꾸고<br>
+updateText 함수도 필요없어짐 (02.html)
+
+computed
+복잡한 계산식을 치환하면서 중복제거의 효과
+
+*methods 와 비교<br>
+함수를 사용할 때는 () 괄호를 붙여줘야하고<br>
+computed 속성은 데이터 변수를 쓰는 것처럼 괄호 없이
+
+같은 결과값<br>
+https://kr.vuejs.org/v2/guide/computed.html#computed-속성의-캐싱-vs-메소드
+
+여러 군데일 때
+computed 는 처음 1번만 계산이 되어 저장(캐싱)되어 있는 값을 세 군데에서 쓴다면<br>
+methods 는 만날 때마다 계산 ! 3번 함수를 반복해서 사용

@@ -15,11 +15,6 @@
         <button v-on:click="plus">+</button>
         {{ year }}
         <button v-on:click="minus">-</button>
-        <form v-on:submit.prevent="submit">
-            <input type="text" :value="text" @keyup="updateText"> <br>
-            {{ text }} <br>
-            <button type="submit">Submit</button>
-        </form>
     </div>
     <script>
         new Vue({
@@ -32,8 +27,7 @@
                 inputData: 'hello',
                 inputType: 'text',
                 link: 'https://velog.io/@',
-                year: 2020,
-                text: 'text'
+                year: 2020
             },
             methods: {
                 nextYear(emotion) {
@@ -52,12 +46,6 @@
                 },
                 minus() {
                     this.year--;
-                },
-                submit() {
-                    console.log('submitted')
-                },
-                updateText(event) {
-                    this.text = event.target.value;
                 }
             }
         })
